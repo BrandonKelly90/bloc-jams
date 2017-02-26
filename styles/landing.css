@@ -29,13 +29,14 @@ body.landing {
 
 .selling-points {
 	position: relative;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+	display: table;
+	width: 100%;
 }
 
 .point {
+	display: table-cell;
 	position: relative;
+	width: 33.3%;
 	padding: 2rem;
 	text-align: center;
 }
