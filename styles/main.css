@@ -63,7 +63,7 @@ body {
 	max-width: 64rem;
 }
 
-@media (min-width: 640 px) {
+@media (min-width: 640px) {
 	html {font-size: 122%;}
 	.column {
 		float: left;
