@@ -40,9 +40,9 @@ body.landing {
 	padding: 2rem;
 	text-align: center;
 	opacity: 0;
-	-webkit-transform: scaleX(0.5) translateY(3rem) rotate(180deg);
-	-moz-transform: scaleX(0.5) translateY(3rem) rotate(180deg);
-	transform: scaleX(0.5) translateY(3rem) rotate(180deg);
+	-webkit-transform: scaleX(0.5) translateY(3rem) rotate(0deg);
+	-moz-transform: scaleX(0.5) translateY(3rem) rotate(0deg);
+	transform: scaleX(0.5) translateY(3rem) rotate(0deg);
 	-webkit-transition: all 0.75s ease-in-out;
     -moz-transition: all 0.75s ease-in-out;
     transition: all 0.75s ease-in-out;
