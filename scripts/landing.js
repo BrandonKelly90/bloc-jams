@@ -1,4 +1,5 @@
 var animatePoints = function() {
+<<<<<<< HEAD
 				
 	var points = document.getElementsByClassName('point');
 	
