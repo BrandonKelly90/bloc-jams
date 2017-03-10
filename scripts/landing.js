@@ -1,6 +1,7 @@
 var pointsArray = document.getElementsByClassName('point');
 
 var animatePoints = function(points) {
+
 	var revealPoint = function(number) {
 		points[number].style.opacity = 1;
 		points[number].style.transform = "scaleX(1) translateY(0) rotate(360deg)";
