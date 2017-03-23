@@ -97,9 +97,11 @@ window.onload = function() {
 			if(exists) {
 				return (currentParent);
 			}
-			return findParentByClassName(currentParent);			
+			console.log("No parent name found with that class name");
+			return findParentByClassName(currentParent);
 		}
 		return undefined;
+		console.log("No parent found");;
 	};
 
 	var getSongItem = function (element) {
