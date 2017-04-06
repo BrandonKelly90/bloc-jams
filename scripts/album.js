@@ -1,3 +1,12 @@
+function setSong(songNumber){
+	currentlyPlayingSongNumber = parseInt(songNumber);
+	currentSongFromAlbum = currentAlbum.songs[songNumber -1];
+};
+
+function getSongNumberCell (number){
+	return $('.song-item-number[data-song-number="' + number + '"]');
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
 	var template =
       '<tr class="album-view-song-item">'
@@ -13,13 +22,12 @@ var createSongRow = function(songNumber, songName, songLength) {
 		var songNumber = parseInt($(this).attr('data-song-number'));
 
 		if (currentlyPlayingSongNumber !== null) {
-			var currentlyPlayingSection = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
+			var currentlyPlayingSection = getSongNumberCell(currentlyPlayingSongNumber);
 			currentlyPlayingSection.html(currentlyPlayingSongNumber);
 		}
 		if (currentlyPlayingSongNumber !== songNumber) {
 			$(this).html(pauseButtonTemplate);
-			currentlyPlayingSongNumber = songNumber;
-			currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+			setSong(songNumber);
 			updatePlayerBarSong();
 		}
 		else if (currentlyPlayingSongNumber === songNumber) {
@@ -102,8 +110,8 @@ function nextSong (){
 
 	updatePlayerBarSong();
 
-	var $nextSongNumberItem = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
-	var $lastSongNumberItem = $('.song-item-number[data-song-number="' + lastSongNumber + '"]');
+	var $nextSongNumberItem = getSongNumberCell(currentlyPlayingSongNumber);
+	var $lastSongNumberItem = getSongNumberCell(lastSongNumber);
 
 	$nextSongNumberItem.html(pauseButtonTemplate);
 	$lastSongNumberItem.html(lastSongNumber);
@@ -124,8 +132,8 @@ function priorSong (){
 
 	updatePlayerBarSong();
 
-	var $priorSongNumberItem = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
-	var $lastSongNumberItem = $('.song-item-number[data-song-number="' + lastSongNumber + '"]');
+	var $priorSongNumberItem = getSongNumberCell(currentlyPlayingSongNumber);
+	var $lastSongNumberItem = getSongNumberCell(lastSongNumber);
 
 	$priorSongNumberItem.html(pauseButtonTemplate);
 	$lastSongNumberItem.html(lastSongNumber);
@@ -151,7 +159,7 @@ $(document).ready(function(){
 	var albumList = [albumPicasso, albumMarconi, albumMayer];
 	var order = 1;
 
-	albumImage.addEventListener("click", function(event){
+	$('.album-cover-art').click(function(event){
 		setCurrentAlbum(albumList[order]);
 		order++;
 		if(order === albumList.length){
