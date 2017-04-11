@@ -161,6 +161,22 @@ function priorSong (){
 	$lastSongNumberItem.html(lastSongNumber);
 };
 
+function togglePlayFromPlayerBar () {
+	var $currentlyPlayingSection = getSongNumberCell(currentlyPlayingSongNumber);
+
+    if (currentSoundFile.isPaused()) {
+        $currentlyPlayingSection.html(pauseButtonTemplate);
+		$playPause.html(playerBarPlayButton);
+		updatePlayerBarSong();
+		currentSoundFile.play();
+	}
+	else if (currentSoundFile.play()) {
+	    $currentlyPlayingSection.html(playButtonTemplate);
+		$playPause.html(playerBarPlayButton);
+	    currentSoundFile.pause();
+	}
+};
+
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
 var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 var playerBarPlayButton = '<span class="ion-play"></span>';
@@ -174,11 +190,13 @@ var currentVolume = 80;
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
+var $playPause = $('.main-controls .play-pause');
 
 $(document).ready(function(){
 	setCurrentAlbum(albumPicasso);
 	$previousButton.click(priorSong);
 	$nextButton.click(nextSong);
+	$playPause.click(togglePlayFromPlayerBar);
 
 	var albumList = [albumPicasso, albumMarconi, albumMayer];
 	var order = 1;
