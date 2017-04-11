@@ -159,11 +159,11 @@ $(document).ready(function(){
 	var albumList = [albumPicasso, albumMarconi, albumMayer];
 	var order = 1;
 
-	$('.album-cover-art').click(function(event){
-		setCurrentAlbum(albumList[order]);
-		order++;
-		if(order === albumList.length){
-			order = 0;
-		}
+	$albumImage[0].addEventListener("click", function(event){
+	    setCurrentAlbum(albumList[order]);
+	    order++;
+	    if(order === albumList.length){
+	        order = 0;
+	    }
 	});
 });
