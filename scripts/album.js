@@ -117,41 +117,24 @@ function updatePlayerBarSong () {
 	 $('.main-controls .play-pause').html(playerBarPauseButton);
  };
 
-function nextSong (){
+function newSong (event){
+	var clicked = $(this).attr('class');
 	var songCurrentIndex = trackIndex(currentAlbum, currentSongFromAlbum);
-	songCurrentIndex++;
-
-	if(songCurrentIndex >= currentAlbum.songs.length) {
-		songCurrentIndex = 0;
-	}
-
 	var lastSongNumber = currentlyPlayingSongNumber;
-
+	if(clicked === 'next'){
+		songCurrentIndex++;
+		if(songCurrentIndex >= currentAlbum.songs.length) {
+			songCurrentIndex = 0;
+		}
+	}
+	else if (clicked === 'previous'){
+		songCurrentIndex--;
+		if(songCurrentIndex < 0) {
+			songCurrentIndex = currentAlbum.songs.length - 1;
+		}
+	}
 	setSong(songCurrentIndex + 1);
 	currentSoundFile.play();
-
-	updatePlayerBarSong();
-
-	var $nextSongNumberItem = getSongNumberCell(currentlyPlayingSongNumber);
-	var $lastSongNumberItem = getSongNumberCell(lastSongNumber);
-
-	$nextSongNumberItem.html(pauseButtonTemplate);
-	$lastSongNumberItem.html(lastSongNumber);
-};
-
-function priorSong (){
-	var songCurrentIndex = trackIndex(currentAlbum, currentSongFromAlbum);
-	songCurrentIndex--;
-
-	if(songCurrentIndex < 0) {
-		songCurrentIndex = currentAlbum.songs.length -1;
-	}
-
-	var lastSongNumber = currentlyPlayingSongNumber;
-
-	setSong(songCurrentIndex + 1);
-	currentSoundFile.play();
-
 	updatePlayerBarSong();
 
 	var $priorSongNumberItem = getSongNumberCell(currentlyPlayingSongNumber);
@@ -194,8 +177,8 @@ var $playPause = $('.main-controls .play-pause');
 
 $(document).ready(function(){
 	setCurrentAlbum(albumPicasso);
-	$previousButton.click(priorSong);
-	$nextButton.click(nextSong);
+	$previousButton.click(newSong);
+	$nextButton.click(newSong);
 	$playPause.click(togglePlayFromPlayerBar);
 
 	var albumList = [albumPicasso, albumMarconi, albumMayer];
