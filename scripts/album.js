@@ -118,16 +118,16 @@ function updatePlayerBarSong () {
  };
 
 function newSong (event){
-	var clicked = $(this).attr('class');
+	var clicked = event.target.className;
 	var songCurrentIndex = trackIndex(currentAlbum, currentSongFromAlbum);
 	var lastSongNumber = currentlyPlayingSongNumber;
-	if(clicked === 'next'){
+	if(clicked === 'ion-skip-forward'){
 		songCurrentIndex++;
 		if(songCurrentIndex >= currentAlbum.songs.length) {
 			songCurrentIndex = 0;
 		}
 	}
-	else if (clicked === 'previous'){
+	else if (clicked === 'ion-skip-backward'){
 		songCurrentIndex--;
 		if(songCurrentIndex < 0) {
 			songCurrentIndex = currentAlbum.songs.length - 1;
