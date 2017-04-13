@@ -46,6 +46,7 @@ var createSongRow = function(songNumber, songName, songLength) {
 		if (currentlyPlayingSongNumber !== null) {
 			var currentlyPlayingSection = getSongNumberCell(currentlyPlayingSongNumber);
 			currentlyPlayingSection.html(currentlyPlayingSongNumber);
+			currentSoundFile.unbind('timeupdate');
 		}
 		if (currentlyPlayingSongNumber !== songNumber) {
 			$(this).html(pauseButtonTemplate);
@@ -128,6 +129,7 @@ var setCurrentAlbum = function(album) {
 			  setCurrentTimeInPlayerBar(filterTimeCode(this.getTime()));
           });
       }
+	 // currentSoundFile.unbind('timeupdate');
   };
 
 var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
