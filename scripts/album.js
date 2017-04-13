@@ -147,6 +147,20 @@ function newSong (event){
 function togglePlayFromPlayerBar () {
 	var $currentlyPlayingSection = getSongNumberCell(currentlyPlayingSongNumber);
 
+	if (currentlyPlayingSongNumber === null) {
+		var songCurrentIndex = trackIndex(currentAlbum, currentSongFromAlbum);
+		var lastSongNumber = currentlyPlayingSongNumber;
+		songCurrentIndex++;
+		if(songCurrentIndex >= currentAlbum.songs.length) {
+			songCurrentIndex = 0;
+		}
+		setSong(songCurrentIndex + 1);
+		currentSoundFile.play();
+		updatePlayerBarSong();
+		updateSeekBarWhileSongPlays();
+		currentSoundFile.togglePlay();
+	}
+
     if (currentSoundFile.isPaused()) {
         $currentlyPlayingSection.html(pauseButtonTemplate);
 		$playPause.html(playerBarPlayButton);
